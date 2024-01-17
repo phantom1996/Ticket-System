@@ -25,6 +25,10 @@ const AgentSchema = new Schema({
     dateCreated : {
         type : Date,
         default : Date.now
+    },
+    lastAssignedTicket : {
+        type : Date,
+        default : Date.now
     }
 })
 const Agents = mongoose.model('agents', AgentSchema);

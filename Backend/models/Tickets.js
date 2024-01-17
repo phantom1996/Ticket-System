@@ -22,7 +22,8 @@ const TicketSchema = new Schema({
         required : true
     },
     assignedTo : {
-        type : String
+        type : String,
+        default: null
     },
     status : {
         type:String,
