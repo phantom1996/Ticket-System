@@ -30,7 +30,8 @@ const TicketSchema = new Schema({
         default : "New"
     },
     resolvedOn : {
-        type : Date
+        type : String,
+        default : "Not Resolved"
     }
 
 })
