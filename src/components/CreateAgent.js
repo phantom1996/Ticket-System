@@ -16,7 +16,7 @@ function CreateAgent() {
     const handleClick = (e) => {
         e.preventDefault();
         if (agent.name && agent.email && agent.phonenumber && agent.description) {
-            if (agent.phonenumber.toString().length == 10) {
+            if (agent.phonenumber.toString().length === 10) {
                 addAgent(agent.name, agent.email, agent.phonenumber, agent.description);
                 alert('Agent has been added');
             }

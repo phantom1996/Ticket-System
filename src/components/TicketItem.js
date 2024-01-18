@@ -8,14 +8,20 @@ export default function TicketItem(props) {
 
   const { resolveTicket } = context;
 
-  const [buttonVal, setButtonVal] = useState("Mark as Resolved");
+
+
+
+  const [buttonVal, setButtonVal] = useState((ticket.status === "Resolved") ? "Resolved" : "Mark as resolved");
   const [buttonClick, setButtonClick] = useState(false);
+
 
   const handleClick = (e) => {
     e.preventDefault();
     if (buttonClick === false) {
       resolveTicket(ticket._id);
-      setButtonVal("Resolved")
+      if (buttonVal !== "Resolved") {
+        setButtonVal("Resolved")
+      }
       setButtonClick(true)
     }
   }

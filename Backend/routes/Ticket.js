@@ -23,15 +23,13 @@ const handleAssigmment = async (ticketIdToAssign) => {
             updateDate.lastAssignedTicket = Date.now();
             break;
         }
-    } else {
-
+        var ObjectId = require('mongodb').ObjectId;
+        var ticketID = new ObjectId(ticketIdToAssign);
+        var agentID = new ObjectId(agentId);
+        const updateTicket = await Tickets.findOneAndUpdate(ticketID, { $set: newAgent }, { new: true });
+        const updateAgent = await Agents.findOneAndUpdate(agentID, { $set: updateDate }, { new: true });
     }
 
-    var ObjectId = require('mongodb').ObjectId;
-    var ticketID = new ObjectId(ticketIdToAssign);
-    var agentID = new ObjectId(agentId);
-    const updateTicket = await Tickets.findOneAndUpdate(ticketID, { $set: newAgent }, { new: true });
-    const updateAgent = await Agents.findOneAndUpdate(agentID, { $set: updateDate }, { new: true });
 }
 
 
@@ -49,7 +47,7 @@ router.post('/support-tickets', [
         let ticket = await Tickets.create({
             topic: req.body.topic,
             description: req.body.description,
-            severity:  parseInt(req.body.severity),
+            severity: parseInt(req.body.severity),
             type: req.body.type
         })
         res.send(ticket)
@@ -85,17 +83,18 @@ router.get('/support-tickets', async (req, res) => {
 
 })
 
+
 router.put('/update-tickets/:id', async (req, res) => {
     try {
         console.log(req.headers)
         var ObjectId = require('mongodb').ObjectId;
         var ticketID = new ObjectId(req.header.id);
 
-        const newUpdate={
-            status : "Resolved",
-            resolvedOn : new Date()
+        const newUpdate = {
+            status: "Resolved",
+            resolvedOn: new Date()
         }
-        const val =await Tickets.findById(req.params.id)
+        const val = await Tickets.findById(req.params.id)
         console.log(val)
         const updateTicket = await Tickets.findByIdAndUpdate(req.params.id, { $set: newUpdate }, { new: true });
         res.status(400).json(updateTicket)

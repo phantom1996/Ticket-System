@@ -15,6 +15,7 @@ const TicketState = (props) => {
               "Content-Type": "application/json",
             },
         });
+        console.log(response.json())
        var oldTicket;
         for(let i=0;i<tickets.length;i++){
             if(tickets[i]._id === id){
@@ -30,10 +31,7 @@ const TicketState = (props) => {
     }
 
     const addTicket = async (topic, description, severity, type) =>{
-        console.log(topic)
-        console.log(description)
-        console.log(severity)
-        console.log(type)
+ 
 
         const data= {
             "topic":topic,
@@ -53,15 +51,70 @@ const TicketState = (props) => {
        // console.log(json)
     }
 
-    const fetchTicket = async () =>{
+    const fetchTicket = async (filterVal) =>{
 
-        const response = await fetch(`${Host}/api/ticket/support-tickets`, {
+        var firstFilter=false;
+
+        var url = Host+"/api/ticket/support-tickets";
+        if(filterVal.severity>0){
+            if(!firstFilter){
+                url=url+"?"+"severity="+filterVal.severity;
+                firstFilter=true;
+            }
+            else{
+                url=url+"&severity="+filterVal.severity;
+            }
+        }
+        if(filterVal.type){
+            if(!firstFilter){
+                url=url+"?type="+filterVal.type;
+                firstFilter=true;
+            }
+            else{
+                url=url+"&type="+filterVal.type;
+            }
+            
+        }
+        if(filterVal.assignedTo){
+            if(!firstFilter){
+                url=url+"?assignedTo="+filterVal.assignedTo;
+                firstFilter=true;
+            }
+            else{
+                url=url+"&assignedTo="+filterVal.assignedTo
+            }
+            
+        }
+        if(filterVal.status){
+            if(!firstFilter){
+                url=url+"?status="+filterVal.status;
+                firstFilter=true;
+            }
+            else{
+                url=url+"&status="+filterVal.status;
+            }
+            
+        }
+
+        const response = await fetch(url, {
             method: "GET", 
             headers: {
               "Content-Type": "application/json",
             },
         });
-        const json = await response.json();
+        var json = await response.json();
+        if(filterVal.sort==="resolvedOn"){
+            var result=[]
+            for(var i in json){
+                result.push(json[i]);
+            }
+            console.log(result)
+            result.sort(function(a,b){return a.resolvedOn - b.resolvedOn})
+            console.log(result)
+            json= JSON.parse(JSON.stringify(result));
+        }
+
+
         setTicket(json);
     }
 
