@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbars from './components/Navbars';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation
+} from "react-router-dom";
+import {Home} from './components/Home';
+import CreateAgent from './components/CreateAgent';
+import CreateTicket from './components/CreateTicket';
+import FetchTicket from './components/FetchTicket';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Navbars />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/createagent' element={<CreateAgent />} />
+          <Route exact path='/createtikcet' element={<CreateTicket />} />
+          <Route exact path='/fetchticket' element={<FetchTicket />} />
+        </Routes>
+      </Router >
+    </>
   );
 }
 
 export default App;
+
