@@ -15,6 +15,8 @@ and can sort it using some parameter
 
 Application already published and running on Vercel (https://ticket-system-mu.vercel.app/)
 
+Used Context API for State management
+
 Please Point out any issue 
 Frontend is being kept simple to have main focus to demonstrate the functionality
 It can use beautified later.
