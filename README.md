@@ -25,6 +25,12 @@ It can use beautified later.
 
 Hope you like it
 
+For local run :
+Install mongodb compass 
+change the connection string in databse file in backend folder to your string as shown in mongo db compass
+
+nodemon index.js : it runs the backend => execute this after cd backend (entering into backend folder)
+npm start for running react.
 
 
 
