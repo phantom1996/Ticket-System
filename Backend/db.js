@@ -2,7 +2,7 @@
 
 const { default: mongoose } = require('mongoose');
 const Mongoose = require('mongoose');
-const MongoURI = "mongodb+srv://sharadnailwal96:IewDhcIt9KjT71yN@ticket-system.jnfjdyx.mongodb.net/?retryWrites=true&w=majority"
+const MongoURI = "mongodb+srv://sharadnailwal96:IewDhcIt9KjT71yN@ticket-system.jnfjdyx.mongodb.net/?retryWrites=true&w=majority""
 
 const connectToMongo = async () =>{
     await mongoose.connect(MongoURI);
