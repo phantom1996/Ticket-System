@@ -1,3 +1,42 @@
+Ticket System : A Web Application based on MERN Tech Stack.
+
+
+Ticket System allow you to
+1.Create Tickets
+2.See Tickets
+3.Registration for Agents
+
+It is Connected with the MONGO DB Atlas 
+
+Functionality
+
+User can see the ticket according to Severity ,type, AssignedTo, status 
+and can sort it using some parameter
+
+Application already published and running on Vercel (https://ticket-system-mu.vercel.app/)
+
+Used Context API for State management
+
+Already updated mongo DB with some Agent and tickets for testing
+
+Please Point out any issue 
+Frontend is being kept simple to have main focus to demonstrate the functionality
+It can use beautified later.
+
+Hope you like it
+
+For local run :
+Install mongodb compass 
+change the connection string in databse file in backend folder to your string as shown in mongo db compass
+
+nodemon index.js : it runs the backend => execute this after cd backend (entering into backend folder)
+npm start for running react.
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
